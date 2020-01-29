@@ -8,7 +8,7 @@ html *
 	padding: 5px;
 	text-decoration: none;
 	text-align: center;
-	display: inline-block;
+	display: inline-block !important;
 }
 
 .container{
