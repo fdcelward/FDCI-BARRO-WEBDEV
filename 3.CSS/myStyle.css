@@ -1,0 +1,93 @@
+html *
+{
+   font-family: Tahoma, Geneva, sans-serif; 
+}
+
+.colorbuttons{
+	color: white;
+	padding: 5px;
+	text-decoration: none;
+	text-align: center;
+	display: inline-block;
+}
+
+.container{
+	padding: 20px;
+}
+
+.menuitem{
+	background-color: lightgrey;
+	border: 0.5px solid black;
+	border-radius: 4px;
+	margin: 2px;
+	padding: 8px;
+}
+
+.selected{
+	background-color: #4CAF50;
+}
+
+.welcome{
+	color: white;
+	margin-left: 25px;
+}
+
+.wrapper {
+	margin-top: 20px;
+	position: relative;
+}
+
+#bottom{
+	margin-top: 35px;
+	background-color: #f1f1f1;
+	padding: 25px;
+	text-align: center;
+}
+
+#main {
+    margin-left: 30%;
+    width: 70%;
+}
+
+#menubar {
+    width: 28%;
+    position: absolute;
+    left: 0;
+}
+
+#menubar ul{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+#menulist{
+	
+}
+
+#top{
+	background-color: #4CAF50;
+	padding: 10px;
+}
+
+#greenbutton{
+	background-color: green;
+}
+
+#orangebutton{
+	background-color: orange;
+}
+
+#bluebutton{
+	background-color: blue;
+}
+
+#redbutton{
+	background-color: red;
+}
+
+
+
+
+
+
