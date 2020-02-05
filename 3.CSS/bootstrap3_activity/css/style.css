@@ -1,0 +1,56 @@
+body {
+    font-family: Montserrat, sans-serif;
+  }
+
+.navbar {
+	font-family: Montserrat, sans-serif;
+	margin-bottom: 0;
+  border-radius: 0;
+}
+
+footer {
+  background-color: #000000;
+  padding: 40px;
+  color:white;
+}
+
+#topics{
+  /* background-color: black; */
+  color: black;
+  /* width: 100%; */
+}
+
+#send{
+  background-color: black;
+  color: white;
+  border-radius: 0;
+  padding-left: 30px;
+  padding-right: 30px;
+  float: right !important;
+}
+
+#contact{
+  border: 1px solid black;
+  padding: 5px;
+}
+
+#flat_style{
+  border-radius: 0;
+}
+
+textarea{
+  resize: none;
+}
+
+.p_indent{
+  text-indent: 10%;
+}
+
+.gallery_column{
+  padding: 5px;
+}
+
+.bg_black{
+  background-color: black;
+  color:  white;
+}
