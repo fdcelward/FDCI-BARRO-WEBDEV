@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS activity 1</title>
+</head>
+<body>
+    <script>
+        console.log("-----The Sum of Odd Numbers from 0 to 50-----");
+        sum_of_odd_numbers();
+        console.log("\n-----Average of Grade-----");
+        average_of_grade();
+        console.log("\n-----Beep, Boop-----");
+        beep_boop();
+        console.log("\n-----Bonus-----");
+        bonus();
+
+        function sum_of_odd_numbers(){
+            var sum = 0;
+            for (var i = 0; i <= 50; i++) {
+                if (i % 2 != 0) {
+                    sum = sum + i;
+                }
+            }
+            console.log("Sum: " + sum);
+        }
+
+        function average_of_grade(){
+            var sum_ = 0;
+            var grade_rate = "";
+            var grade_ = {
+                PE: 100,
+                MATH: 99,
+                SCIENCE: 98,
+                ENGLISH: 80,
+                FILIPINO: 70                
+            };
+            for (val in grade_) {
+                sum_ += grade_[val];
+            }
+            var average_ = sum_ / Object.keys(grade_).length;
+
+            if (average_ > 0 && average_ < 60){
+                grade_rate = "F";
+            } else if (average_ >= 60 && average_ < 70) {
+                grade_rate = "D";
+            } else if (average_ >= 70 && average_ < 80) {
+                grade_rate = "C";
+            } else if (average_ >= 80 && average_ < 90) {
+                grade_rate = "B";
+            } else if (average_ >= 90 && average_ < 100) {
+                grade_rate = "A";
+            } else {
+                grade_rate = "Out of Range"
+            }
+            console.log("Average grade: " +average_);
+            console.log("Grade: " +grade_rate);
+        }
+
+        function beep_boop() {
+            for (var num = 0; num <= 100; num++) { 
+                if (num % 3 == 0 && num % 5 == 0) {
+                    console.log(num + " BeepBoop");
+                } 
+                else if (num % 3 == 0) {
+                    console.log(num + " Beep");
+                } else if (num % 5 == 0) {
+                    console.log(num + " Boop");
+                } else {
+                    console.log(num);
+                }
+            }
+        }
+
+        function bonus() {
+            for (var i = 1; i <= 5; i++) {
+                var star ="";
+                for (var j = 1; j <= i; j++) {
+                    star += "*";
+                }
+                console.log(star);
+            }   
+        }
+    </script>
+</body>
+</html>
