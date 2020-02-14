@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>JS Act 2</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+<body>
+
+	<br>
+	<div class="container">
+		<div class="card">
+			<div class="card-header">Part 1: Write a function that would accept a string parameter and output the longest word within the string.</div>
+    		<div class="card-body">
+			 	<div class="form-group">
+					<label for="txtLongestWord">String is:</label>
+					<textarea class="form-control" rows="3" id="txtLongestWord" placeholder="Enter a string">The quick brown fox jumps over the lazy dog</textarea>
+				</div>
+				<input type="button" class="btn btn-primary" id="btnLongestWord" value="Submit" />
+				<br><br>
+				<p>The longest word/s:</p>
+				<em><p class="text-success" id="resultLongestWord"></p></em>
+			</div>
+  		</div>
+	</div>
+	<br>
+
+	<div class="container">
+		<div class="card">
+			<div class="card-header">Part 2: Write a function that accepts a number parameter and output if the number is prime or not.</div>
+    		<div class="card-body">
+			 	<div class="form-group">
+				  	<label for="txtPrimeNum">Prime Number:</label>
+				  	<input type="number" class="form-control" id="txtPrimeNum" placeholder="Enter a prime number" value="1">
+				</div>
+				<input type="button" class="btn btn-primary" id="btnPrimeNumber" value="Submit"/>
+				<br><br>
+				<p>Result:</p>
+				<em><p class="text-success" id="resultPrimeNumber"></p></em>
+			</div>
+  		</div>
+	</div>
+	<br>
+	<form id="frmConvertHour">
+		<div class="container">
+			<div class="card">
+				<div class="card-header">Part 3:  Create a form that has 1 input for hour. On submit, display equivalent minutes from the inputted hour.</div>
+	    		<div class="card-body">
+				 	<div class="form-group">
+					  	<label for="txtHour">Hour:</label>
+					  	<input type="number" class="form-control" id="txtHour" placeholder="Enter a number" value="1">
+					</div>
+					<input type="submit" class="btn btn-primary" id="btnConvertMinute" value="Calculate">
+					<br><br>
+					<p>Result:</p>
+					<em><p class="text-success" id="resultConvertHour"></p></em>
+				</div>		
+	  		</div>
+		</div>
+	</form>
+	<br>
+	<br>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  	<script type="text/javascript">
+  		document.getElementById("btnLongestWord").onclick = function() {
+  			var strLongestWord = document.getElementById("txtLongestWord").value;
+  			document.getElementById("resultLongestWord").innerHTML = "";
+  			longestWord(strLongestWord);
+  		};
+
+  		document.getElementById("btnPrimeNumber").onclick = function() {
+  			var primeNumberx = document.getElementById("txtPrimeNum").value;
+  			if (primeNumberx == "" || primeNumberx == null ){
+  				alert("Input a number");
+
+  			} else {
+  				primeNumber(primeNumberx);
+  			}
+  		};
+
+  		document.getElementById("frmConvertHour").onsubmit = function() {
+  			var txthour = document.getElementById("txtHour").value;
+  			if (txthour == "" || txthour == null ){
+  				alert("Input a number");
+  				return;
+  			} 
+
+  			var result = parseInt(txthour) * 60;
+  			document.getElementById("resultConvertHour").innerHTML = result;
+  			return false;
+  		};
+
+  		function longestWord(longWord) {
+		    var str = longWord.split(" ");
+		    var longest = 0;
+		    var word = [];
+
+		    for (var i in str){
+		        if (longest < str[i].length) {
+		            longest = str[i].length;
+		           	word = [];
+		            word[0] = str[i];
+		        } else if (longest == str[i].length){
+		        	word.push(str[i].toString());
+		        }
+		    }
+		    
+		    for(var i in word){
+		    	if (i == word[word.length-1]){
+		    		console.log(word[i]);
+		    		document.getElementById("resultLongestWord").innerHTML += word[i];
+		    	} else {
+		    		document.getElementById("resultLongestWord").innerHTML += word[i] + "<br />";
+		    	}
+		    }
+	
+		}
+
+  		function primeNumber(num) {
+  			num = parseInt(num);
+  			flag = true;
+  			
+  			if (num == 1 || num < 1){
+  				document.getElementById("resultPrimeNumber").innerHTML = num + " is not a prime number";
+  				return;
+  			}
+
+  			for(i = 2; i <= num - 1; i++) {
+                if (num % i == 0) { 
+                    flag = false; 
+                    break; 
+                }
+            }
+
+            if (flag == true) {
+                document.getElementById("resultPrimeNumber").innerHTML = num + " is a prime number";
+            } else{
+                document.getElementById("resultPrimeNumber").innerHTML = num + " is not a prime number";
+            }
+
+		}
+  	</script>
+</body>
+</html>
