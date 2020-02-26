@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>JS Act 3</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+<body>
+	<br>
+	<div class="container">
+		<form id="frm_part1">
+			<div class="card">
+				<div class="card-header">Part 1: Create a form that accepts a name and age input. On every form submit, add the inputted values to an object. Display the object value and display the readable formatted value.</div>
+	    		<div class="card-body">
+	    			<div class="row">
+	    				<div class="col-md-7">
+	    					<div class="form-inline">
+	    						<label for="usr">Name:&nbsp;</label>
+		    					<div class="flex-fill mr-2">
+						          	<input type="text" name="name" id="frm1Name" placeholder="Enter name" class="form-control w-100">
+						        </div>	
+	    					</div>
+	    					  
+	    				</div>
+	    				<div class="col-md-3">
+	    					<div class="form-inline">
+		    					<label for="usr">Age:&nbsp;</label>
+		    					<div class="flex-fill mr-2">
+						          	<input type="number" name="age" id="age" placeholder="Enter age" class="form-control w-100">
+						        </div>	 
+						    </div> 
+	    				</div>
+	    				<div class="col-md-2">
+  							<input type="submit" class="form-control btn btn-primary" value="Add" id="btn_form1_submit">
+	    				</div>
+	    			</div>
+	    			<br/>
+	    			<h5>Final Object:</h5>
+	    			<p id="final_object"></p>
+	    			<br>
+	    			<h5>Readable Format:</h5>
+	    			<p id="readable_format"></p>
+				</div>
+			</div>
+		</form>
+	</div>
+	<br>
+
+	<div class="container">
+		<form id="frm_part2">
+			<div class="card">
+					<div class="card-header">Part 2:  Create a <strong>PRODUCT INVENTORY</strong>. Create a form that will accept the name, stocks, price of product. 
+					On every submit add the product to the list or to an object. Display the product list. 
+					There must be also a button that when clicked will calculate how much is the total cost of EVERY product and calculate for the total cost of ALL the products.
+				</div>
+	    		<div class="card-body">
+	    			<h2>Product Inventory</h2>
+			   			
+	    			<div class="form-group">
+					  	<label for="name">Name:</label>
+					  	<input type="text" class="form-control" id="frm2Name" placeholder="Enter name">
+					</div>
+		    		<div class="form-group">
+					  	<label for="stocks">Stocks:</label>
+					  	<input type="number" class="form-control" id="stocks" placeholder="Enter stocks">
+					</div>
+		    		<div class="form-group">
+					  	<label for="price">Price:</label>
+					  	<input type="number" step="0.01" class="form-control" id="price" placeholder="Enter price">
+					</div>
+		    		<input type="submit" class="btn btn-primary" value="Add" id="btn_form2_submit">
+		    		<br>
+	    			<h5>Product List:</h5>
+	    			<br>
+	    			<p id="product_list"></p>
+	    			<button type="button" class="btn btn-primary" onclick="calculateTotal()">Calculate for total value for each product</button>
+	    			<br/>
+	    			<h5>Product Total Value:</h5>
+	    			<br/>
+	    			<div id="product_total_value">
+	    			</div>
+
+	    			<p id="product_total_val"></p>
+
+				</div>
+			</div>
+		</form>
+	</div>
+	<br>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  	<script type="text/javascript">
+  		var form1Arr = []; //form 1 array values to store
+  		var form2Arr = []; //form 2 array values to store
+
+  		//form 1 submit function
+  		document.getElementById("frm_part1").onsubmit = function() {
+  			if(isForm1Valid() == true) {	
+	  			var name = document.getElementById("frm1Name").value;
+	  			var age = parseInt(document.getElementById("age").value);
+	  			var obj = {
+	  				name: name,
+	  				age: age
+	  			};
+	  			form1Arr.push(obj);
+
+	  			document.getElementById("final_object").innerHTML = JSON.stringify(form1Arr);
+	  			document.getElementById("readable_format").innerHTML = "";
+
+	  			for (var i in form1Arr){ //loop through the array
+	  				if (i == form1Arr[form1Arr.length -1]){ //if array index in the loop is the last
+						document.getElementById("readable_format").innerHTML +=Object.keys(obj)[0] +": " + form1Arr[i].name + ", " + Object.keys(obj)[1]+": " + form1Arr[i].age ;
+	  				} else {
+	  					document.getElementById("readable_format").innerHTML +=Object.keys(obj)[0] +": " + form1Arr[i].name + ", " + Object.keys(obj)[1]+": " + form1Arr[i].age +"<br>";
+	  				}	
+	  			}
+
+	  			document.getElementById('frm_part1').reset(); //reset all inputs to empty
+			}
+  			return false; //to prevent page reloading	
+  		};
+
+  		//form 2 submit function
+  		document.getElementById("frm_part2").onsubmit = function() {
+  			if(isForm2Valid() == true) {
+	  			var name = document.getElementById("frm2Name").value;
+	  			var stocks = document.getElementById("stocks").value;
+	  			var price = document.getElementById("price").value;
+	  			var obj = {
+	  				name: name,
+	  				stocks: stocks,
+	  				price: price
+	  			};
+	  			form2Arr.push(obj);
+
+	  			document.getElementById("product_list").innerHTML = "";
+	  			for (var i in form2Arr){ //loop through the array
+	  				if (i == form2Arr[form2Arr.length -1]){ //if array index in the loop is the last
+						document.getElementById("product_list").innerHTML +=Object.keys(obj)[0] +": " + form2Arr[i].name + ", " + Object.keys(obj)[1]+": " + form2Arr[i].stocks + ", " + Object.keys(obj)[2]+": " + form2Arr[i].price;
+	  				} else {
+	  					document.getElementById("product_list").innerHTML +=Object.keys(obj)[0] +": " + form2Arr[i].name + ", " + Object.keys(obj)[1]+": " + form2Arr[i].stocks + ", " + Object.keys(obj)[2]+": " + form2Arr[i].price + "<br>";
+	  				}
+	  			}
+	  			console.log(form2Arr);
+	  			console.log(form2Arr.length);
+
+	  			document.getElementById('frm_part2').reset(); //reset all inputs to empty
+	  		}
+  			return false; //to prevent page reloading
+  		};
+
+  		//calculation product total value
+  		function calculateTotal(){
+  			document.getElementById("product_total_val").innerHTML = ""; 
+	     	var total = 0;
+
+			for (var i in form2Arr) {
+				var subTotal = parseFloat(form2Arr[i].stocks) * parseFloat(form2Arr[i].price);
+				total += subTotal;
+				if (i == form2Arr[form2Arr.length -1]){
+					document.getElementById("product_total_val").innerHTML += form2Arr[i].name + " will have a total value of " + subTotal;
+				} else {
+					document.getElementById("product_total_val").innerHTML += form2Arr[i].name + " will have a total value of " + subTotal + "<br>";
+				}
+			}
+			document.getElementById("product_total_val").innerHTML += "Total Value " +total; 
+  		}
+
+  		//validation function for form 1
+  		function isForm1Valid(){
+  			var name = String(document.getElementById("frm1Name").value);
+  			var age = parseInt(document.getElementById("age").value);
+  			console.log(typeof age);
+  			if (name == null || name == ""){
+  				alert("Input name");
+  				return false;
+  			} else if ( age == NaN) {
+				alert("Age must have a value");
+  				return false;
+  			} else if (age < 1) {
+  				alert("Age must be greater than 0");
+  				return false;
+  			} 
+  			return true;
+  		}
+
+		//validation function for form 2
+  		function isForm2Valid() {
+  			var name = document.getElementById("frm2Name").value;
+  			var stocks = parseFloat(document.getElementById("stocks").value);
+			var price = parseFloat(document.getElementById("price").value);
+
+			if (name == null || name == ""){
+  				alert("Input name in product inventory");
+  				return false;
+  			}else if ( stocks == NaN) {
+				alert("Stocks must have a value");
+  				return false;
+  			} else if (stocks < 1) {
+  				alert("Stocks must be greater than 0");
+  				return false;
+  			} else if ( price == NaN) {
+				alert("Stocks must have a value");
+  				return false;
+  			} else if (price < 1) {
+  				alert("Stocks must be greater than 0");
+  				return false;
+  			} 
+  			for(var i=0; i<form2Arr.length; i++){
+  				if(String(form2Arr[i].name).toUpperCase() == name.toUpperCase()) {
+  					alert("Product name already exist");
+  					return false;
+  				}
+  			}
+
+  			return true;
+  		}
+  	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
